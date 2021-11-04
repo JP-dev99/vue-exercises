@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <h1>{{title}}</h1>
-    <ul>
-      <li v-for="photo in photos">
+  <div class="body">
+    <h1 class="center">{{title}}</h1>
+    <ul class="photo-list">
+      <li class="photo-list-item" v-for="photo in photos">
         <img :src="photo.url" :alt="photo.title">
       </li>
     </ul>
@@ -13,23 +13,31 @@
 export default {
   data () {
     return {
-      title: 'alurapic',
-      photos: [
-        {
-        url: 'https://s.conjur.com.br/img/b/cachorro-buldogue-frances.jpeg',
-        title: 'dog'
-        },
-        {
-        url: 'https://www.petz.com.br/blog/wp-content/uploads/2020/08/cat-sitter-felino.jpg',
-        title: 'cat'
-        }
-      ]
-
+      title: 'Alurapic',
+      photos: []
     }
+  },
+  created () {
+    this.$http.get('http://localhost:3000/v1/fotos')
+    .then(res => res.json())
+    .then(photos => this.photos = photos, err => console.log(err));
   }
 }
 </script>
 
 <style>
-
+  .center {
+    text-align: center;
+  }
+  .body {
+    font-family: Helvetica, sans-serif;
+    margin: 0 auto;
+    width: 96%;
+  }
+  .photo-list {
+    list-style: none;
+  }
+  .photo-list .photo-list-item {
+    display: inline-block;
+  }
 </style>
