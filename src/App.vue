@@ -1,16 +1,25 @@
 <template>
   <div class="body">
-    <h1 class="center">{{title}}</h1>
+    <h1 class="title">{{title}}</h1>
     <ul class="photo-list">
       <li class="photo-list-item" v-for="photo in photos">
-        <img :src="photo.url" :alt="photo.title">
+
+        <panel :title="photo.titulo">
+          <img class="responsive-image" :src="photo.url" :alt="photo.title">
+        </panel>
+
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import Panel from './components/shared/panel/Panel.vue';
+
 export default {
+    components: {
+   'panel' : Panel
+  },
   data () {
     return {
       title: 'Alurapic',
@@ -21,12 +30,12 @@ export default {
     this.$http.get('http://localhost:3000/v1/fotos')
     .then(res => res.json())
     .then(photos => this.photos = photos, err => console.log(err));
-  }
+  },
 }
 </script>
 
 <style>
-  .center {
+  .title {
     text-align: center;
   }
   .body {
@@ -39,5 +48,8 @@ export default {
   }
   .photo-list .photo-list-item {
     display: inline-block;
+  }
+  .responsive-image {
+    width: 100%;
   }
 </style>
