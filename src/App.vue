@@ -1,14 +1,14 @@
 <template>
   <div class="body">
     <h1 class="title">{{title}}</h1>
-
-<input class="filter" v-on:input="filter = $event.target.value"
-placeholder="Filtre pelo título da foto">
+    <input class="filter" v-on:input="filter = $event.target.value"
+    placeholder="Filtre pelo título da foto">
     <ul class="photo-list">
+
       <li class="photo-list-item" v-for="photo in photosWithFilter">
 
         <panel :title="photo.titulo">
-          <img class="responsive-image" :src="photo.url" :alt="photo.title">
+        <responsive-image :url="photo.url" :title="photo.title"/>
         </panel>
 
       </li>
@@ -18,10 +18,12 @@ placeholder="Filtre pelo título da foto">
 
 <script>
 import Panel from './components/shared/panel/Panel.vue';
+import ResponsiveImage from './components/shared/panel/ResponsiveImage.vue';
 
 export default {
     components: {
-   'panel' : Panel
+   'panel' : Panel,
+   'ResponsiveImage' : ResponsiveImage
   },
   data () {
     return {
@@ -63,9 +65,7 @@ export default {
   .photo-list .photo-list-item {
     display: inline-block;
   }
-  .responsive-image {
-    width: 100%;
-  }
+
   .filter {
     display: block;
     width: 100%;
