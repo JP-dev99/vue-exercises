@@ -2,10 +2,8 @@
     <h2 class="center">Cadastro</h2>
 </template>
 
-<script lang="ts">
-export default {
-    
-}
+<script>
+
 </script>
 
 <style scoped>

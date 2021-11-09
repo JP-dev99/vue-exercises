@@ -1,29 +1,29 @@
 <template>
-      <div>
-        <h1 class="title">Alurapic</h1>
-        <input class="filter" v-on:input="filter = $event.target.value"
-        placeholder="Filtre pelo título da foto">
-        <ul class="photo-list">
+  <div>
+    <h1 class="title">Alurapic</h1>
+    <input class="filter" v-on:input="filter = $event.target.value"
+    placeholder="Filtre pelo título da foto">
+    <ul class="photo-list">
 
-        <li class="photo-list-item" v-for="photo in photosWithFilter">
+      <li class="photo-list-item" v-for="photo in photosWithFilter">
 
-            <panel :title="photo.titulo">
-            <responsive-image :url="photo.url" :title="photo.titulo"/>
-            </panel>
-        </li>
-        </ul>
-    </div>
+        <Panel :title="photo.titulo">
+        <responsive-image :url="photo.url" :title="photo.titulo"/>
+        </Panel>
+
+      </li>
+    </ul>
+  </div>
 </template>
 
-
-
 <script>
+
 import Panel from '../components/shared/panel/Panel.vue';
 import ResponsiveImage from '../components/shared/responsive-image/ResponsiveImage.vue';
 
 export default {
     components: {
-   'panel' : Panel,
+   'Panel' : Panel,
    'ResponsiveImage' : ResponsiveImage
   },
   data () {
@@ -60,10 +60,8 @@ export default {
   .photo-list .photo-list-item {
     display: inline-block;
   }
-
   .filter {
     display: block;
     width: 100%;
   }
-
 </style>
